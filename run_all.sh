@@ -6,7 +6,7 @@ out_file="stats.tsv"
 input_file="./gen_data.txt"
 
 
-# Проверяем существование входного файла
+# проверяет существование входного файла
 if [ ! -f "$input_file" ]; then
     echo "Ошибка: входной файл $input_file не найден" >&2
     exit 1

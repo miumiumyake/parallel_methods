@@ -16,15 +16,18 @@ struct Vec3 {
 
 class NBodySystem {
     std::vector<double> masses;
+    // массив nx3
     std::vector<Vec3> positions, velocities, accelerations;
     const double G = 6.67e-11;
     const double epsilon = 1e-3; // шаг 
     const int num_threads;
 
 public:
+    // threads = 1 это опциональный аргумент функции чтобы по умолчании было значение 
     NBodySystem(const std::string& filename, int threads = 1) : num_threads(threads) {
         std::ifstream file(filename);
         int N;
+        // читает значение до пробела или переноса стороки
         file >> N;
         
         masses.resize(N);
@@ -98,7 +101,7 @@ public:
     }
 };
 
-
+// функция для параметра терминала
 char* getCmdOption(char ** begin, char ** end, const std::string & option)
 {
     char ** itr = std::find(begin, end, option);
@@ -109,6 +112,7 @@ char* getCmdOption(char ** begin, char ** end, const std::string & option)
     return 0;
 }
 
+// проверка на существование аргумента командной строки
 bool cmdOptionExists(char** begin, char** end, const std::string& option)
 {
     return std::find(begin, end, option) != end;
